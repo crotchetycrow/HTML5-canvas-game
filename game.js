@@ -16,16 +16,16 @@ bgImage.src = "img/background.png";
 
 // GAME OBJECTS
 var hero = {
-  speed: 256, //Movement speed in pixels
+  speed: 256, // Movement speed in pixels
   x: 0,
   y: 0
-  //Movement direction
+  // Movement direction
 };
 var monster = {
   x: 0,
   y: 0
 };
-var monstersCaught = 0; //Counter
+var monstersCaught = 0; // Counter
 
 // PLAYER INPUT
 var keysDown = {};
@@ -38,4 +38,16 @@ addEventListener("keyup", function(e) {
   delete keysDown[e.keyCode];
 }, false);
 
-//NOTE: keyCode is deprecated
+// NOTE: keyCode is deprecated
+
+//NEW GAME
+// Reset the game when the player catches a monster
+var reset = function () {
+  // This resets the hero's location
+  hero.x = canvas.width / 2;
+  hero.y = canvas.height / 2;
+
+  // This randomises monster's location
+  monster.x = 32 + (Math.random() * (canvas.width - 64));
+  monster.y = 32 + (Math.random() * (canvas.height - 64));
+};
