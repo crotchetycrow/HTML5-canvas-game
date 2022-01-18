@@ -26,3 +26,16 @@ var monster = {
   y: 0
 };
 var monstersCaught = 0; //Counter
+
+// PLAYER INPUT
+var keysDown = {};
+
+addEventListener("keydown", function (e) {
+  keysDown[e.keyCode] = true;
+}, false);
+
+addEventListener("keyup", function(e) {
+  delete keysDown[e.keyCode];
+}, false);
+
+//NOTE: keyCode is deprecated
