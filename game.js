@@ -112,3 +112,25 @@ var render = function () {
   ctx.textBaseline = "top";
   ctx.fillText("Monsters caught: " + monstersCaught, 32, 32);
 };
+
+// MAIN GAIN LOOP
+var main = function () {
+  var now = Date.now();
+  var delta = now - then; // Calculates how many milliseconds have passed since the last interval
+
+  update(delta / 1000);
+  render();
+
+  then = now;
+
+  requestAnimationFrame(main);
+};
+
+// Cross-browser support for requestAnimationFrame
+var w = window;
+requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
+
+// Let's play this game!
+var then = Date.now();
+reset();
+main();
