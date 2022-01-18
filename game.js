@@ -14,6 +14,21 @@ bgImage.onload = function () {
 };
 bgImage.src = "img/background.png";
 
+// SPRITES
+var heroReady = false;
+var heroImage = new Image();
+heroImage.onload = function () {
+  heroReady = true;
+};
+heroImage.src = "img/hero.png";
+
+var monsterReady = false;
+var monsterImage = new Image();
+monsterImage.onload = function () {
+  monsterReady = true;
+};
+monsterImage.src = "img/monster.png";
+
 // GAME OBJECTS
 var hero = {
   speed: 256, // Movement speed in pixels
@@ -76,4 +91,24 @@ var update = function (modifier) {
     ++monstersCaught;
     reset()
   }
+};
+
+// RENDER OBJECTS
+var render = function () {
+  if (bgReady) {
+    ctx.drawImage(bgImage, 0, 0);
+  }
+  if (heroReady) {
+    ctx.drawImage(heroImage, hero.x, hero.y);
+  }
+  if (monsterReady) {
+    ctx.drawImage(monsterImage, monster.x, monster.y);
+  }
+
+  // Score style
+  ctx.fillStyle = "rgb(250, 250, 250)";
+  ctx.font = "24px Helvetica";
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+  ctx.fillText("Monsters caught: " + monstersCaught, 32, 32);
 };
